@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>嶺東科技大學 轉學考公告</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", sans-serif;
+      background: #f4f6f9;
+      color: #2c3e50;
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    header {
+      background: linear-gradient(135deg, #1a3a6b 0%, #2563a8 100%);
+      color: #fff;
+      padding: 0 2rem;
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      padding: 1.2rem 0;
+    }
+
+    .header-logo {
+      width: 56px;
+      height: 56px;
+      background: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .header-logo svg { width: 36px; height: 36px; }
+
+    .header-text h1 { font-size: 1.45rem; font-weight: 700; letter-spacing: .05em; }
+    .header-text p  { font-size: .85rem; opacity: .8; margin-top: .2rem; }
+
+    /* ── Breadcrumb ── */
+    .breadcrumb {
+      background: #e8eef6;
+      border-bottom: 1px solid #d0dae8;
+      padding: .55rem 2rem;
+      font-size: .8rem;
+      color: #5a6e8a;
+    }
+
+    .breadcrumb-inner { max-width: 1100px; margin: 0 auto; }
+    .breadcrumb a { color: #2563a8; text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb span { margin: 0 .4rem; }
+
+    /* ── Main layout ── */
+    .container {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .container { grid-template-columns: 1fr; }
+    }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.07);
+      padding: 1.2rem;
+      align-self: start;
+      position: sticky;
+      top: 1.5rem;
+    }
+
+    .sidebar h2 {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: #7a8fa8;
+      margin-bottom: .8rem;
+      padding-bottom: .5rem;
+      border-bottom: 2px solid #e8eef6;
+    }
+
+    .sidebar ul { list-style: none; }
+
+    .sidebar ul li a {
+      display: block;
+      padding: .5rem .6rem;
+      border-radius: 6px;
+      color: #2c3e50;
+      font-size: .88rem;
+      text-decoration: none;
+      transition: background .15s, color .15s;
+    }
+
+    .sidebar ul li a:hover,
+    .sidebar ul li a.active {
+      background: #2563a8;
+      color: #fff;
+    }
+
+    /* ── Content area ── */
+    .content { min-width: 0; }
+
+    .page-title {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .page-title h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1a3a6b;
+    }
+
+    .page-title .badge {
+      background: #2563a8;
+      color: #fff;
+      font-size: .72rem;
+      padding: .2rem .6rem;
+      border-radius: 20px;
+    }
+
+    /* ── Hot items ── */
+    .hot-section { margin-bottom: 1.8rem; }
+
+    .section-label {
+      font-size: .78rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: #7a8fa8;
+      margin-bottom: .7rem;
+    }
+
+    .hot-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    @media (max-width: 600px) {
+      .hot-cards { grid-template-columns: 1fr; }
+    }
+
+    .hot-card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,.08);
+      padding: 1.1rem 1.2rem;
+      border-left: 4px solid #e74c3c;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: transform .15s, box-shadow .15s;
+    }
+
+    .hot-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(0,0,0,.12);
+    }
+
+    .hot-card .hot-label {
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+      font-size: .72rem;
+      color: #e74c3c;
+      font-weight: 700;
+      margin-bottom: .5rem;
+    }
+
+    .hot-card h3 { font-size: .92rem; line-height: 1.5; color: #1a3a6b; margin-bottom: .6rem; }
+
+    .hot-card .meta { font-size: .75rem; color: #8a9ab0; display: flex; gap: 1rem; }
+
+    /* ── Bulletin table ── */
+    .bulletin-card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.07);
+      overflow: hidden;
+    }
+
+    .bulletin-card table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .88rem;
+    }
+
+    .bulletin-card thead tr {
+      background: #1a3a6b;
+      color: #fff;
+    }
+
+    .bulletin-card thead th {
+      padding: .75rem 1rem;
+      text-align: left;
+      font-weight: 600;
+      font-size: .8rem;
+      letter-spacing: .04em;
+    }
+
+    .bulletin-card tbody tr {
+      border-bottom: 1px solid #eef1f5;
+      transition: background .1s;
+    }
+
+    .bulletin-card tbody tr:hover { background: #f0f4fb; }
+    .bulletin-card tbody tr:last-child { border-bottom: none; }
+
+    .bulletin-card tbody td { padding: .75rem 1rem; vertical-align: middle; }
+
+    .td-no { color: #aab0ba; font-size: .8rem; width: 56px; }
+
+    .td-title a {
+      color: #2563a8;
+      text-decoration: none;
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    .td-title a:hover { text-decoration: underline; }
+
+    .td-views {
+      color: #7a8fa8;
+      font-size: .8rem;
+      white-space: nowrap;
+      width: 72px;
+      text-align: center;
+    }
+
+    .td-date {
+      color: #7a8fa8;
+      font-size: .8rem;
+      white-space: nowrap;
+      width: 100px;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: #1a3a6b;
+      color: #b0c4de;
+      text-align: center;
+      padding: 1.8rem 1rem;
+      font-size: .82rem;
+      margin-top: 3rem;
+    }
+
+    footer strong { color: #fff; }
+    footer p { margin-top: .3rem; }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="header-inner">
+    <div class="header-logo">
+      <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="18" cy="18" r="16" fill="#1a3a6b"/>
+        <text x="18" y="23" text-anchor="middle" font-size="14" fill="#fff" font-family="serif" font-weight="bold">嶺</text>
+      </svg>
+    </div>
+    <div class="header-text">
+      <h1>嶺東科技大學</h1>
+      <p>學生發展處招生中心 · 第二教學大樓 IT203</p>
+    </div>
+  </div>
+</header>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="#">首頁</a><span>›</span>
+    <a href="#">招生資訊</a><span>›</span>
+    轉學考公告
+  </div>
+</div>
+
+<!-- Main -->
+<div class="container">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h2>招生類別</h2>
+    <ul>
+      <li><a href="#" class="active">轉學考</a></li>
+      <li><a href="#">特殊選才</a></li>
+      <li><a href="#">繁星計畫</a></li>
+      <li><a href="#">申請入學</a></li>
+      <li><a href="#">技優甄審</a></li>
+      <li><a href="#">甄選入學</a></li>
+      <li><a href="#">聯合分發</a></li>
+      <li><a href="#">原住民專班</a></li>
+      <li><a href="#">體育獎學金</a></li>
+      <li><a href="#">產學合作</a></li>
+      <li><a href="#">碩士班招生</a></li>
+      <li><a href="#">進修推廣部</a></li>
+    </ul>
+  </aside>
+
+  <!-- Content -->
+  <main class="content">
+
+    <div class="page-title">
+      <h2>轉學考公告</h2>
+      <span class="badge">Category 24</span>
+    </div>
+
+    <!-- Hot announcements -->
+    <div class="hot-section">
+      <p class="section-label">熱門公告</p>
+      <div class="hot-cards">
+
+        <a class="hot-card" href="#">
+          <div class="hot-label">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+            HOT
+          </div>
+          <h3>115學年度第1學期日間部暨進修部轉學招生簡章及報名系統</h3>
+          <div class="meta">
+            <span>👁 617 瀏覽</span>
+            <span>📅 2026-04-08</span>
+          </div>
+        </a>
+
+        <a class="hot-card" href="#">
+          <div class="hot-label">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+            HOT
+          </div>
+          <h3>嶺東科技大學114學年度第2學期日間部暨進修部轉學考榜單查詢</h3>
+          <div class="meta">
+            <span>👁 535 瀏覽</span>
+            <span>📅 2026-01-20</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- Full bulletin list -->
+    <div class="bulletin-card">
+      <table>
+        <thead>
+          <tr>
+            <th class="td-no">#</th>
+            <th>公告標題</th>
+            <th style="text-align:center">瀏覽</th>
+            <th>發布日期</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-no">845</td>
+            <td class="td-title"><a href="#">115學年度第1學期日間部暨進修部轉學招生簡章及報名系統</a></td>
+            <td class="td-views">617</td>
+            <td class="td-date">2026-04-08</td>
+          </tr>
+          <tr>
+            <td class="td-no">816</td>
+            <td class="td-title"><a href="#">嶺東科技大學114學年度第2學期日間部暨進修部轉學考榜單查詢</a></td>
+            <td class="td-views">535</td>
+            <td class="td-date">2026-01-20</td>
+          </tr>
+          <tr>
+            <td class="td-no">790</td>
+            <td class="td-title"><a href="#">114學年度第2學期日間部暨進修部轉學招生簡章暨報名網址</a></td>
+            <td class="td-views">859</td>
+            <td class="td-date">2025-11-14</td>
+          </tr>
+          <tr>
+            <td class="td-no">739</td>
+            <td class="td-title"><a href="#">嶺東科技大學114學年度第1學期日間部暨進修部轉學考招生簡章</a></td>
+            <td class="td-views">2,297</td>
+            <td class="td-date">2025-04-21</td>
+          </tr>
+          <tr>
+            <td class="td-no">717</td>
+            <td class="td-title"><a href="#">113學年度第2學期日間部暨進修部轉學考榜單查詢網址</a></td>
+            <td class="td-views">593</td>
+            <td class="td-date">2025-01-20</td>
+          </tr>
+          <tr>
+            <td class="td-no">695</td>
+            <td class="td-title"><a href="#">嶺東科技大學113學年度第2學期日間部暨進修部轉學考招生簡章</a></td>
+            <td class="td-views">707</td>
+            <td class="td-date">2024-11-11</td>
+          </tr>
+          <tr>
+            <td class="td-no">663</td>
+            <td class="td-title"><a href="#">嶺東科技大學113學年度第1學期日間部暨進修部轉學考榜單查詢網址</a></td>
+            <td class="td-views">1,118</td>
+            <td class="td-date">2024-07-26</td>
+          </tr>
+          <tr>
+            <td class="td-no">610</td>
+            <td class="td-title"><a href="#">嶺東科技大學113學年度第1學期日間部暨進修部轉學考網路報名網址</a></td>
+            <td class="td-views">2,060</td>
+            <td class="td-date">2024-05-13</td>
+          </tr>
+          <tr>
+            <td class="td-no">604</td>
+            <td class="td-title"><a href="#">嶺東科技大學113學年度第一學期日間部暨進修部轉學考簡章</a></td>
+            <td class="td-views">1,300</td>
+            <td class="td-date">2024-04-24</td>
+          </tr>
+          <tr>
+            <td class="td-no">576</td>
+            <td class="td-title"><a href="#">112學年度第2學期日間部暨進修部轉學考榜單查詢網址</a></td>
+            <td class="td-views">516</td>
+            <td class="td-date">2024-01-17</td>
+          </tr>
+          <tr>
+            <td class="td-no">570</td>
+            <td class="td-title"><a href="#">112(2)日間部暨進修部轉學考招生成績查詢網址</a></td>
+            <td class="td-views">195</td>
+            <td class="td-date">2024-01-12</td>
+          </tr>
+          <tr>
+            <td class="td-no">551</td>
+            <td class="td-title"><a href="#">112學年度第2學期日間部暨進修部轉學考簡章暨報名系統</a></td>
+            <td class="td-views">920</td>
+            <td class="td-date">2023-10-23</td>
+          </tr>
+          <tr>
+            <td class="td-no">509</td>
+            <td class="td-title"><a href="#">112學年度第1學期日間部暨進修部轉學考錄取名單公告</a></td>
+            <td class="td-views">850</td>
+            <td class="td-date">2023-07-18</td>
+          </tr>
+          <tr>
+            <td class="td-no">448</td>
+            <td class="td-title"><a href="#">嶺東科技大學112學年度第1學期日間部暨進修部轉學考網路報名網址</a></td>
+            <td class="td-views">930</td>
+            <td class="td-date">2023-05-17</td>
+          </tr>
+          <tr>
+            <td class="td-no">429</td>
+            <td class="td-title"><a href="#">嶺東科技大學112學年度第1學期日間部暨進修部轉學考招生簡章</a></td>
+            <td class="td-views">1,002</td>
+            <td class="td-date">2023-04-26</td>
+          </tr>
+          <tr>
+            <td class="td-no">406</td>
+            <td class="td-title"><a href="#">轉學生學號查詢網</a></td>
+            <td class="td-views">196</td>
+            <td class="td-date">2023-01-20</td>
+          </tr>
+          <tr>
+            <td class="td-no">392</td>
+            <td class="td-title"><a href="#">111學年度第2學期日間部暨進修部轉學考榜單查詢</a></td>
+            <td class="td-views">414</td>
+            <td class="td-date">2023-01-10</td>
+          </tr>
+          <tr>
+            <td class="td-no">391</td>
+            <td class="td-title"><a href="#">111學年度第2學期日間部暨進修部轉學考招生成績查詢網址</a></td>
+            <td class="td-views">177</td>
+            <td class="td-date">2023-01-06</td>
+          </tr>
+          <tr>
+            <td class="td-no">355</td>
+            <td class="td-title"><a href="#">嶺東科技大學111學年度第2學期日間部暨進修部轉學考招生簡章</a></td>
+            <td class="td-views">969</td>
+            <td class="td-date">2022-10-17</td>
+          </tr>
+          <tr>
+            <td class="td-no">346</td>
+            <td class="td-title"><a href="#">寒轉與暑轉簡章預計公告時間</a></td>
+            <td class="td-views">620</td>
+            <td class="td-date">2022-10-04</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+</div>
+
+<!-- Footer -->
+<footer>
+  <strong>嶺東科技大學 學生發展處招生中心</strong>
+  <p>第二教學大樓 IT203</p>
+  <p>電話：(04) 3706-5678 ／ (04) 2384-9482</p>
+  <p>地址：台中市南屯區嶺東路1號</p>
+</footer>
+
+</body>
+</html>
